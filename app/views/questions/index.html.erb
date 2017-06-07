@@ -1,0 +1,17 @@
+<h1> Vocabulary Review Exercise</h1>
+
+  <div class='container'>
+  <p>Choose the word from the dropdown menu that best completes the sentence.</p
+
+      <ul class='list_style'>
+        <% @questions.each do |q|%>
+          <li>
+            <% sentences = q.sentence.split('[]') %>
+            <%= sentences[0] %>
+            <%= select("choice", q.id, @propositions.shuffle.map {|p| [ p, p ] }, { include_blank: true }) %>
+            <%= sentences[1] %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
