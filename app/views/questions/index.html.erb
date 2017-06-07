@@ -9,7 +9,7 @@
             <% sentences = q.sentence.split('[]') %>
             <%= sentences[0] %>
             <%= select("choice", q.id, @propositions.shuffle.map {|p| [ p, p ] }, { include_blank: true }) %>
-              <%= sentences[1] %>
+            <%= sentences[1] %>
           </li>
         <% end %>
       </ul>
