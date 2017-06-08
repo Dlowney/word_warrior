@@ -1,0 +1,96 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+$btn-base:4rem;//range from 4 to 8 looks fine
+*, *:before, *:after {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+.ribbon-btn {
+  position:relative;
+  display:inline-block;
+  padding-right:$btn-base/1.2;
+  padding-left:$btn-base/1.2;
+  color:white;
+  font-size:$btn-base/2;
+  line-height:$btn-base;
+  text-decoration:none;
+  letter-spacing:2px;
+  border-top:.125rem solid;
+  border-bottom:.125rem solid;
+  transition:letter-spacing .1s;
+  color: green;
+
+
+  &:hover {
+    color: green;
+    letter-spacing:1px;
+  }
+  &:active {
+    letter-spacing:3px;
+    transition:letter-spacing 0s;
+    text-transform:uppercase;//just kidding
+  }
+
+  &:before, &:after {
+    content:'';
+    position:absolute;
+    top:-0.125rem;
+    width:$btn-base*.7071+0.18;
+    height:$btn-base*.7071+0.18;
+    transform:rotate(45deg);
+  }
+  &:before {
+    left:0;
+    border-top:.125rem solid;
+    border-right:.125rem solid;
+    transform-origin:0 0;
+  }
+  &:after {
+    right:$btn-base*-0.7071-0.18;
+    border-bottom:.125rem solid;
+    border-left:.125rem solid;
+    transform-origin:0 0;
+  }
+}
+.pad {
+  margin-top: 30px;
+  text-decoration: none;
+}
+  a:link {
+ text-decoration:none;
+
+}
+ a:link:hover {
+  text-decoration:none;
+ }
+
+
+h1 {
+  text-align: center;
+  color: red;
+  font-size: 30px;
+  font-family: arial;
+}
+
+.container {
+  margin: 0 auto;
+  width: 970px;
+  background: white;
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+p {
+  font-size: 19px;
+}
+
+.list_style {
+  list-style-type:decimal;
+  li {
+    margin: 20px 0;
+  }
+}
+

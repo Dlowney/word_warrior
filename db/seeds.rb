@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 #{ }"We found a cat that had been [abandoned] by its owners when they moved away.&&&{0}The house has looked [abandoned] since the Bates family moved away 2 years ago."
 
+
 Question.delete_all
 
 questions =[]
@@ -47,11 +48,6 @@ blocks.each do |block|
 
 end
 
-p questions
-
-
-
-
 
 
 
@@ -67,4 +63,4 @@ p questions
 #   {sentence: "It is important for our organization to remain [] from the government so that we can make decisions which are free from political influence.", missing_word: "autonomous"},
 #   {sentence: " The [] child watches almost 3 hours of television per day.", missing_word: "average"} ])
 
-#  questions
+
