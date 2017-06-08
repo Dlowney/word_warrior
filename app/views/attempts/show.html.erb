@@ -1,0 +1,24 @@
+<h1>Solution to Vocabulary Exercise</h1>
+
+<div class='container'>
+  <ul class='list_style'>
+    <% @questions.each do |q| %>
+      <li>
+        <% if @answers.user_input == q.missing_word %>
+
+          <% sentences = q.sentence.split('[]') %>
+          <%= sentences[0] %>
+          <strong><%= missing_word = q.missing_word %></strong>
+          <%= sentences[1] %>
+
+          <% else %>
+          <% sentences = q.sentence.split('[]') %>
+          <%= sentences[0] %>
+          <%= select("choice", q.id, @propositions.shuffle.map {|p| [ p, p ] }, { include_blank: true }) %>
+          <%= sentences[1] %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
