@@ -22,7 +22,10 @@ $btn-base:4rem;//range from 4 to 8 looks fine
   color: green;
 
 
-  &:hover {letter-spacing:1px;}
+  &:hover {
+    color: green;
+    letter-spacing:1px;
+  }
   &:active {
     letter-spacing:3px;
     transition:letter-spacing 0s;
@@ -56,8 +59,11 @@ $btn-base:4rem;//range from 4 to 8 looks fine
 }
   a:link {
  text-decoration:none;
-}
 
+}
+ a:link:hover {
+  text-decoration:none;
+ }
 
 
 h1 {
