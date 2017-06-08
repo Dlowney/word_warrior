@@ -25,7 +25,12 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :questions
+  resources :questions do
+    collection do
+      post :save_answers
+    end
+  end
+
   resources :answers
 
   root to: 'pages#home'
