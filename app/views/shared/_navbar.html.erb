@@ -3,15 +3,26 @@
     <a href="#" class="toggle"><i class="fa fa-reorder"></i></a>
 
     <a href="#" class="brand"><%= cl_image_tag("logo13_pqprzs",
-      width: 40, height: 20) %>ordWar</a>
+      width: 40, height: 20) %>ordWarrior</a>
     <div class="left">
-      <a href="#" class="link">Exercices</a>
-      <a href="#" class="link">Profile</a>
+      <%= link_to questions_path, class: "link" do %>
+      Exercises
+      <% end %>
+      <a href="/users/:id" class="link">Profile</a>
       <a href="#" class="link">Scoreboard</a>
     </div>
     <div class="right">
-      <a href="#" class="link">Login</a>
+      <% if user_signed_in? %>
+        <%= link_to destroy_user_session_path, method: :delete, class: "link" do %>
+          logout
+        <% end %>
+      <% else %>
+        <%= link_to new_user_session_path, class: "link" do %>
+          login
+        <% end %>
+      <% end %>
     </div>
   </nav>
+
 
 
