@@ -14,7 +14,7 @@ class AttemptsController < ApplicationController
 
   def new
     @attempt = Attempt.new
-    @questions = Question.all
+    @questions = Question.limit(10)
     @propositions = []
     @questions.each do |x|
       @propositions << x.missing_word
