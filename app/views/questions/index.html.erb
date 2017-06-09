@@ -1,24 +1,4 @@
-<h1> Vocabulary Review Exercise</h1>
 
-  <div class='container'>
-  <p>Choose the word from the dropdown menu that best completes the sentence.</p>
-    <%= form_tag('/questions/save_answers') do %>
-      <ul class='list_style'>
-        <% @questions.each do |q|%>
-          <li>
-            <% sentences = q.sentence.split('[]') %>
-            <%= sentences[0] %>
-            <%= select("choice", q.id, @propositions.shuffle.map {|p| [ p, p ] }, { include_blank: true }) %>
-            <%= sentences[1] %>
-          </li>
-        <% end %>
-      </ul>
 
-<% end %>
 
-</div>
-  <div class = "text-center pad">
-    <a href="#" class="ribbon-btn">SOLUTIONS </a>
-     <%= submit_tag "SOLUTIONS", class: "ribbon-btn" %>
-  </div>
-</div>
+<p>new stuff to come</p>

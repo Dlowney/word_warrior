@@ -8,7 +8,9 @@ class AttemptsController < ApplicationController
     @answers.each do |y|
       @user_input << y.user_input
     end
+    compute_score
   end
+
 
   def new
     @attempt = Attempt.new
@@ -31,5 +33,16 @@ class AttemptsController < ApplicationController
     end
 
     redirect_to attempt_path(@attempt)
+  end
+
+  def compute_score
+    number_questions = @questions.count
+    number_correct = 0
+    @answers.each do |x|
+      if x.user_input == x.question.missing_word
+        number_correct += 1
+      end
+    end
+    @score = "#{number_correct} / #{number_questions}"
   end
 end

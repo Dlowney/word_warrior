@@ -2,23 +2,28 @@
 
 <div class='container'>
   <ul class='list_style'>
-    <% @questions.each do |q| %>
+    <% @answers.each do |a| %>
       <li>
-        <% if @answers.user_input == q.missing_word %>
+        <% if a.user_input == a.question.missing_word %>
 
-          <% sentences = q.sentence.split('[]') %>
+          <% sentences = a.question.sentence.split('[]') %>
           <%= sentences[0] %>
-          <strong><%= missing_word = q.missing_word %></strong>
+          <strong class="text-success"><%= a.question.missing_word %></strong>
           <%= sentences[1] %>
 
           <% else %>
-          <% sentences = q.sentence.split('[]') %>
+          <% sentences = a.question.sentence.split('[]') %>
           <%= sentences[0] %>
-          <%= select("choice", q.id, @propositions.shuffle.map {|p| [ p, p ] }, { include_blank: true }) %>
+<strong class="text-striped"><%= a.question.missing_word %></strong>
+<strong class="text-danger"><s> <%= a.user_input %></s> </strong>
           <%= sentences[1] %>
         <% end %>
       </li>
     <% end %>
+
+    <p>Your score is: <%= @score %></p>
   </ul>
 </div>
-
+  <div class = "text-center pad">
+    <%= link_to 'Choose Another Exercise', questions_path, class:"ribbon-btn" %>
+  </div>
