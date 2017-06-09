@@ -15,22 +15,6 @@ class QuestionsController < ApplicationController
     @question = Question.new
   end
 
-  def save_answers
-    @answers_hash = params[:choice]
-    @answers_hash.each do |question_id, user_input|
-      Answer.create(
-        question_id: question_id,
-        user_input: user_input,
-        user_id: current_user.id
-      )
-    end
-    redirect_to request.referer
-  end
-
-
-  def show_results
-  end
-
   def create
     @question = question.new(question_params)
     if @question.save

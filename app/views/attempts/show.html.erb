@@ -1,0 +1,29 @@
+<h1>Solution to Vocabulary Exercise</h1>
+
+<div class='container'>
+  <ul class='list_style'>
+    <% @answers.each do |a| %>
+      <li>
+        <% if a.user_input == a.question.missing_word %>
+
+          <% sentences = a.question.sentence.split('[]') %>
+          <%= sentences[0] %>
+          <strong class="text-success"><%= a.question.missing_word %></strong>
+          <%= sentences[1] %>
+
+          <% else %>
+          <% sentences = a.question.sentence.split('[]') %>
+          <%= sentences[0] %>
+<strong class="text-striped"><%= a.question.missing_word %></strong>
+<strong class="text-danger"><s> <%= a.user_input %></s> </strong>
+          <%= sentences[1] %>
+        <% end %>
+      </li>
+    <% end %>
+
+    <p>Your score is: <%= @score %></p>
+  </ul>
+</div>
+  <div class = "text-center pad">
+    <%= link_to 'Choose Another Exercise', questions_path, class:"ribbon-btn" %>
+  </div>

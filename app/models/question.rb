@@ -1,4 +1,6 @@
 class Question < ApplicationRecord
+  has_many :answers
+  has_many :attempts, through: :answers
 end
 
 
