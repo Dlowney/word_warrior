@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612093953) do
+ActiveRecord::Schema.define(version: 20170612101227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,10 +31,17 @@ ActiveRecord::Schema.define(version: 20170612093953) do
     t.index ["user_id"], name: "index_attempts_on_user_id"
   end
 
-  create_table "headwords", force: :cascade do |t|
+  create_table "head_words", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "level_id"
+    t.index ["level_id"], name: "index_head_words_on_level_id"
+  end
+
+  create_table "levels", force: :cascade do |t|
+    t.string "name"
+    t.integer "difficulty"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -42,7 +49,8 @@ ActiveRecord::Schema.define(version: 20170612093953) do
     t.string "missing_word"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "head_word"
+    t.bigint "head_word_id"
+    t.index ["head_word_id"], name: "index_questions_on_head_word_id"
   end
 
   create_table "users", force: :cascade do |t|
