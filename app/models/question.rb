@@ -4,7 +4,7 @@ class Question < ApplicationRecord
   belongs_to :head_word
 
   # def self.sample(difficulty)
-  #   questions.join(:head_word).joniwhere(difficulty: difficulty)
+   # questions.join(:head_word).joinwhere(difficulty: difficulty)
   #    Level.find_by(difficulty).head_words
   # end
 end

@@ -12,9 +12,10 @@ class AttemptsController < ApplicationController
   end
 
 
+
   def new
     @attempt = Attempt.new
-    @questions = Question.limit(10)
+    @questions = Question.join(head_word_id: [level_id: [difficulty: 1]]).sample(5)
     @propositions = []
     @questions.each do |x|
       @propositions << x.missing_word
