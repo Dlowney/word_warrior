@@ -50,41 +50,44 @@ blocks.each do |block|
 
   separate_block = block.split("&&&{0}")
 
-
-    separate_block.each do |morceau|
-
-      head_word = HeadWord.create(
-        {name: separate_block[0]
-          if  }
-      )
-      head_words << head_word
-
-      if morceau.include? "["  # (pour virer les "discussions")
-        pieces = morceau.split("[")
-        first_part = pieces.first
-        second_part = pieces.last
-        last_part = second_part.split("]")
-
-        qsentence = first_part + "[]" + last_part.last
-        missingword = last_part.first
-
-          question = Question.create do |question|
-              question.sentence = qsentence
-              question.missing_word = missingword
-              question.head_word = head_word
-
-            questions << question
-          end
-
+  head_word = HeadWord.create(
+    {name: separate_block[0]
+      if LEVEL1.include?(separate_block[0])
+        level_id: #ID DE {name: "EASY", difficulty: 1},
       else
-      end
+        level_id: #ID DE {name: "EXTRA", difficulty: 10},
+    }
+  )
+  head_words << head_word
 
+  separate_block.each do |morceau|
+
+    if morceau.include? "["  # (pour virer les "discussions")
+      pieces = morceau.split("[")
+      first_part = pieces.first
+      second_part = pieces.last
+      last_part = second_part.split("]")
+
+      qsentence = first_part + "[]" + last_part.last
+      missingword = last_part.first
+
+        question = Question.create do |question|
+            question.sentence = qsentence
+            question.missing_word = missingword
+            question.head_word = head_word
+
+          questions << question
+        end
+    else
     end
 
   end
 
+end
+
 
 p head_words
+
 
 # questions = Question.create([
 #   {sentence: "His [] to speak French has limited his advancement in the federal public service.", missing_word: "inability"},
