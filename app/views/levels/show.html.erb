@@ -1,3 +1,21 @@
-<h1>Hey, you've found level <%= @level.name %></h1>
-
-<h4>Wow, that's so impressive, maybe.</h4>
+<div class="level-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="level-row">
+          <div class="row">
+            <div class="col-xs-3">
+              <div class="level-header-icon">
+                Level <%= @level.name %>
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <div class="level-header-description">
+                <%= %>
+              </div>
+            </div>
+          </div>
+       </div>
+    </div>
+  </div>
+</div>
