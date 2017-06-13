@@ -2,6 +2,11 @@ class Question < ApplicationRecord
   has_many :answers
   has_many :attempts, through: :answers
   belongs_to :head_word
+
+  # def self.sample(difficulty)
+   # questions.join(:head_word).joinwhere(difficulty: difficulty)
+  #    Level.find_by(difficulty).head_words
+  # end
 end
 
 

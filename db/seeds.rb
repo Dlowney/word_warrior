@@ -1,66 +1,88 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-#{ }"We found a cat that had been [abandoned] by its owners when they moved away.&&&{0}The house has looked [abandoned] since the Bates family moved away 2 years ago."
+Question.destroy_all
+Level.destroy_all
+HeadWord.destroy_all
+
+levels = Level.create([
+  {name: "EASY", difficulty: 1},
+  {name: "EASY", difficulty: 2},
+  {name: "EASY", difficulty: 3},
+  {name: "MEDIUM", difficulty: 4},
+  {name: "MEDIUM", difficulty: 5},
+  {name: "MEDIUM", difficulty: 6},
+  {name: "HARD", difficulty: 7},
+  {name: "HARD", difficulty: 8},
+  {name: "HARD", difficulty: 9},
+  {name: "EXTRA", difficulty: 10},
+])
 
 
-Question.delete_all
+LEVEL1 = %w(abandoned analyze approach area assess assume authority available benefit concept consist constitute context contract create data define derive distribute economy environment establish estimate evident export factor finance formula function identify income indicate individual interpret involve issue labour legal legislate major method occur percent period policy principle proceed process require research respond role section sector significant similar source specific structure theory vary)
+LEVEL2 = %w(achieve acquire administer affect appropriate aspect assist category chapter commission community complex compute conclude conduct consequent construct consume credit culture design distinct element equate evaluate feature final focus impact injure institute invest item journal maintain normal obtain participate perceive positive potential previous primary purchase range region regulate relevant reside resource restrict secure seek select site strategy survey text tradition transfer)
+LEVEL3 = %w(alternative circumstance comment compensate component consent considerable constant constrain contribute convene coordinate core corporate correspond criteria deduce demonstrate document dominate emphasis ensure exclude framework fund illustrate immigrate imply initial instance interact justify layer link locate maximise minor negate outcome partner philosophy physical proportion publish react register rely remove scheme sequence sex shift specify sufficient task technical technique technology valid volume)
+LEVEL4 = %w(access adequate annual apparent approximate attitude attribute civil code commit communicate concentrate confer contrast cycle debate despite dimension domestic emerge error ethnic goal grant hence hypothesis implement implicate impose integrate internal investigate job label mechanism obvious occupy option output overall parallel parameter phase predict principal prior professional project promote regime resolve retain series statistic status stress subsequent sum summary undertake)
+LEVEL5 = %w(academy adjust alter amend aware capacity challenge clause compound conflict consult contact decline discrete draft enable energy enforce entity equivalent evolve expand expose external facilitate fundamental generate generation image liberal licence logic margin medical mental modify monitor network notion objective orient perspective precise prime psychology pursue ratio reject revenue stable style substitute sustain symbol target transit trend version welfare whereas)
+LEVEL6 = %w(abstract accurate acknowledge aggregate allocate assign attach author bond brief capable cite cooperate discriminate display diverse domain edit enhance estate exceed expert explicit federal fee flexible furthermore gender ignorant incentive incidence incorporate index inhibit initiate input instruct intelligent interval lecture migrate minimum ministry motive neutral nevertheless overseas precede presume rational recover reveal scope subsidy tape trace transform transport underlie utilize)
+LEVEL7 = %w(adapt adult advocate aid channel chemical classic comprehensive comprise confirm contrary convert couple decade definite deny differentiate dispose dynamic eliminate empirical equip extract file finite foundation globe grade guarantee hierarchy identical ideology infer innovate insert intervene isolate media mode paradigm phenomenon priority prohibit publication quote release reverse simulate sole somewhat submit successor survive thesis topic transmit ultimate unique visible voluntary)
+LEVEL8 = %w(abandon accompany accumulate ambiguous append appreciate arbitrary automate bias chart clarify commodity complement conform contemporary contradict crucial currency denote detect deviate displace drama eventual exhibit exploit fluctuate guideline highlight implicit induce inevitable infrastructure inspect intense manipulate minimise nuclear offset paragraph plus practitioner predominant prospect radical random reinforce restore revise schedule tense terminate theme thereby uniform vehicle via virtual visual widespread)
+LEVEL9 = %w(accommodate analogy anticipate assure attain behalf bulk cease coherent coincide commence compatible concurrent confine controversy converse device devote diminish distort duration erode ethic format found inherent insight integral intermediate manual mature mediate medium military minimal mutual norm overlap passive portion preliminary protocol qualitative refine relax restrain revolution rigid route scenario sphere subordinate supplement suspend team temporary trigger unify violate vision)
 
-questions =[]
 
-# database = 'abandon&&&{0}We found a cat that had been [abandoned] by its owners when they moved away.&&&{0}The house has looked [abandoned] since the Bates family moved away 2 years ago.&&&{0}The police finally had to [abandon] their search after looking for the lost child for over a year.&&&{0}They [abandoned] the dog because they could no longer take care of it.&&&{0}A mother panda often gives birth to two cubs, but [abandons] one, and only takes care of the other.&&&{0}Three million cars are [abandoned] every year in the United States.&&&{0}If frightened or threatened, a mother rabbit may [abandon], ignore, or eat her babies.&&&{0}We had to [abandon] our plans to buy our own house after I got laid off at work.&&&{0}By the early 5th century, Rome had [abandoned] its lands on the British Isles.&&&{0}Bob Marley sang, "Until the philosophy which holds one race superior, and another inferior is finally, and permanently discredited and [abandoned], there will be war."&&&{0}The young woman was arrested for [abandoning] her baby after the infant was found alone at a bus station.&&&{0}Discussion question: A teenager abandons her newborn baby on the doorstep of the home of a wealthy family. What should be done with the teenage mother and the baby?
-# abduct&&&{0}A father who was angry after losing custody of his children following his divorce has [abducted] the two children, and fled the country.&&&{0}A rich businessman was [abducted] at gunpoint by four masked men who are asking for one million pounds for his safe return.&&&{0}The [abduction] of British diplomat James Cross by Quebec separatists was one of the most important events in modern Canadian history.&&&{0}Hospital officials have increased security around the nursery following reports of a woman who was trying to [abduct] a baby.&&&{0}According to a newspaper article I read, most child [abductions] that occur are committed by a divorced parent.&&&{0}In an army-led revolt in Haiti in 1991, President Jean-Bertrand Aristide was [abducted] and deported to Venezuela.&&&{0}In March of 1996, three American soldiers were jailed in Japan for up to seven years for the [abduction] and rape of a schoolgirl in Okinawa.&&&{0}In 2002, in the southern Chinese province of Guangxi, a man was executed for [abducting] and then selling 104 women as brides to poor farmers.&&&{0}In some developing countries, children are [abducted] from their homes and recruited into the army.&&&{0}Discussion question: Has there ever been a famous case of abduction in your country? Talk about it.&&&{0}Find someone who knows of a famous person who has been abducted.'
-
-database = File.read("#{Rails.root}/db/data/big_questions.txt")
+database = File.read("#{Rails.root}/db/data/AmericanDB.txt")
 
 blocks = database.split("\n")
 
 blocks.each do |block|
 
   separate_block = block.split("&&&{0}")
+  word = separate_block[0]
+  missing_words = separate_block.map { |q| q.match(/\[(.*)\]/) }
+                                .map { |md| md.to_a.second }
+                                .compact.uniq
 
-  separate_block.each do |morceau|
+  level_difficulty = if LEVEL1.include?(word) || LEVEL1.any? { |w| missing_words.include?(w) }
+                       1
+                     elsif LEVEL2.include?(word) || LEVEL2.any? { |w| missing_words.include?(w) }
+                       2
+                     elsif LEVEL3.include?(word) || LEVEL3.any? { |w| missing_words.include?(w) }
+                       3
+                     elsif LEVEL4.include?(word) || LEVEL4.any? { |w| missing_words.include?(w) }
+                       4
+                     elsif LEVEL5.include?(word) || LEVEL5.any? { |w| missing_words.include?(w) }
+                       5
+                     elsif LEVEL6.include?(word) || LEVEL6.any? { |w| missing_words.include?(w) }
+                       6
+                     elsif LEVEL7.include?(word) || LEVEL7.any? { |w| missing_words.include?(w) }
+                       7
+                     elsif LEVEL8.include?(word) || LEVEL8.any? { |w| missing_words.include?(w) }
+                       8
+                     elsif LEVEL9.include?(word) || LEVEL9.any? { |w| missing_words.include?(w) }
+                       9
+                     else
+                       10
+                     end
 
-    if morceau.include? "["  # (pour virer les "discussions")
-      pieces = morceau.split("[")
+  level = Level.find_by(difficulty: level_difficulty)
+
+  head_word = HeadWord.create(
+    name: word,
+    level_id: level.id
+  )
+
+  separate_block.each do |section|
+    if section.include? "["  # (pour virer les "Discussion question")
+      pieces = section.split("[")
       first_part = pieces.first
       second_part = pieces.last
       last_part = second_part.split("]")
 
-     qsentence = first_part + "[]" + last_part.last
-     missingword = last_part.first
+      qsentence = first_part + "[]" + last_part.last
+      missingword = last_part.first
 
-       question = Question.create do |question|
+      question = Question.create do |question|
           question.sentence = qsentence
           question.missing_word = missingword
-          question.head_word = separate_block[0]
-
-        questions << question
-        end
-    else
+          question.head_word = head_word
+      end
     end
-
   end
-
 end
-
-
-
-
-# questions = Question.create([
-#   {sentence: "His [] to speak French has limited his advancement in the federal public service.", missing_word: "inability"},
-#   {sentence: "It can be quite difficult to really define [ ] ideas, such as love or friendship.", missing_word: "abstract"},
-#   {sentence: "The governor has received a great deal of [] publicity as a result of the scandal.", missing_word: "adverse"},
-#   {sentence: "Manchester has beaten Liverpool three times this season, with an [] score of 7 - 3.", missing_word: "aggregate"},
-#   {sentence: "The teacher [] that a number of students had cheated on the test, but the accusation was later shown to be completely untrue.", missing_word: "alleged"},
-#   {sentence: "ESL students often try to draw [] between English and their mother tongue, but it is not always possible.", missing_word: "analogies"},
-#   {sentence: "It could take weeks to [] all the data, but when we do, the results will be very helpful to our project.", missing_word: "analyze"},
-#   {sentence: "Japanese people bow at different [] to show different meaning.", missing_word: "angles"},
-#   {sentence: "It is important for our organization to remain [] from the government so that we can make decisions which are free from political influence.", missing_word: "autonomous"},
-#   {sentence: " The [] child watches almost 3 hours of television per day.", missing_word: "average"} ])
-
-

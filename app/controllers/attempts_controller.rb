@@ -11,6 +11,7 @@ class AttemptsController < ApplicationController
     compute_score
   end
 
+
   def new
     @attempt = Attempt.new
     @questions = Question.all
