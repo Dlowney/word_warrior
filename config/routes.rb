@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :levels, only: :index do
+  resources :levels, only: [:index, :show] do
     resources :questions
   end
 

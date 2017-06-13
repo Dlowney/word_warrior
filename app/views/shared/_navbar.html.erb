@@ -1,28 +1,25 @@
+<nav class="navbar">
+  <a href="#" class="toggle"><i class="fa fa-reorder"></i></a>
 
-  <nav class="navbar">
-    <a href="#" class="toggle"><i class="fa fa-reorder"></i></a>
+  <%= link_to root_path, class: "brand" do %>
+    <%= cl_image_tag("logo13_pqprzs", width: 40, height: 20) %>ordWarrior
+  <% end %>
 
-    <a href="#" class="brand"><%= cl_image_tag("logo13_pqprzs",
-      width: 40, height: 20) %>ordWarrior</a>
-    <div class="left">
-      <%= link_to questions_path, class: "link" do %>
-      Exercises
+  <div class="left">
+    <%= link_to "Levels", levels_path, class: "link" %>
+    <a href="/users/:id" class="link">Profile</a>
+    <a href="#" class="link">Scoreboard</a>
+  </div>
+
+  <div class="right">
+    <% if user_signed_in? %>
+      <%= link_to destroy_user_session_path, method: :delete, class: "link" do %>
+        logout
       <% end %>
-      <a href="/users/:id" class="link">Profile</a>
-      <a href="#" class="link">Scoreboard</a>
-    </div>
-    <div class="right">
-      <% if user_signed_in? %>
-        <%= link_to destroy_user_session_path, method: :delete, class: "link" do %>
-          logout
-        <% end %>
-      <% else %>
-        <%= link_to new_user_session_path, class: "link" do %>
-          login
-        <% end %>
+    <% else %>
+      <%= link_to new_user_session_path, class: "link" do %>
+        login
       <% end %>
-    </div>
-  </nav>
-
-
-
+    <% end %>
+  </div>
+</nav>
