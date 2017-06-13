@@ -7,7 +7,7 @@
 
   <div class="left">
     <%= link_to "Levels", levels_path, class: "link" %>
-    <a href="/users/:id" class="link">Profile</a>
+    <%= link_to "Profile", user_path(current_user), class: "link" %>
     <a href="#" class="link">Scoreboard</a>
   </div>
 
