@@ -1,0 +1,14 @@
+<div class="level-container">
+  <div class="container">
+    <div class="row">
+      <% @levels.each do |level| %>
+        <div class="col-xs-12">
+          <div class="level-row">
+            <%= level.name %>
+            <%= link_to "", level_path(level), class: "level-row-link" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

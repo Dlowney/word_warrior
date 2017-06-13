@@ -10,9 +10,10 @@
     <meta content="Word Warrior is the coolest and most effective site to help you learn the words you need to be an academic all-star in English.">
   </head>
   <body>
+    <%= render 'shared/navbar' unless current_page?(root_url) %>
     <%= render 'shared/flashes' %>
     <%= yield %>
-    <%= render 'shared/navbar' %>
+    <%= render 'shared/navbar' if current_page?(root_url) %>
     <%= javascript_include_tag 'application' %>
   </body>
 </html>

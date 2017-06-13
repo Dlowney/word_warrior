@@ -1,0 +1,25 @@
+.level-row {
+  color: white;
+  margin: 10px 0;
+  border-radius: 5px;
+  padding: 20px 10px;
+  position: relative;
+  background-color: #4c93ce;
+
+  &:hover {
+    background-color: #ce8485;
+  }
+}
+
+.level-container {
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+.level-row-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
