@@ -1,6 +1,9 @@
 Question.destroy_all
 Level.destroy_all
 HeadWord.destroy_all
+User.destroy_all
+Answer.destroy_all
+Attempt.destroy_all
 
 levels = Level.create([
   {name: "EASY", difficulty: 1},
@@ -27,7 +30,7 @@ LEVEL8 = %w(abandon accompany accumulate ambiguous append appreciate arbitrary a
 LEVEL9 = %w(accommodate analogy anticipate assure attain behalf bulk cease coherent coincide commence compatible concurrent confine controversy converse device devote diminish distort duration erode ethic format found inherent insight integral intermediate manual mature mediate medium military minimal mutual norm overlap passive portion preliminary protocol qualitative refine relax restrain revolution rigid route scenario sphere subordinate supplement suspend team temporary trigger unify violate vision)
 
 
-database = File.read("#{Rails.root}/db/data/AmericanDB.txt")
+database = File.read("#{Rails.root}/db/data/questions.txt")
 
 blocks = database.split("\n")
 
@@ -86,3 +89,38 @@ blocks.each do |block|
     end
   end
 end
+
+user = User.create(
+        email: "test@example.com",
+        password: "password",
+        password_confirmation: "password"
+      )
+level = Level.find_by(difficulty: 1)
+
+50.times do |i|
+  attempt = Attempt.create(user: user)
+
+  10.times do |ii|
+    question = level.questions.order("RANDOM()").first
+    user_input = [question.missing_word, ""].sample
+    Answer.create(
+      attempt: attempt,
+      question: question,
+      user_input: user_input
+    )
+  end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
