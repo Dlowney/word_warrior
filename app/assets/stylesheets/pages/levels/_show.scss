@@ -3,5 +3,13 @@
 }
 
 .level-header-description {
+  float: right;
 
+  a {
+    color: white;
+
+    &:hover {
+      color: black;
+    }
+  }
 }

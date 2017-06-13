@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
   def create
     @question = question.new(question_params)
     if @question.save
-      redirect_to questions_path
+      redirect_to level_question_path(@question)
     else
       render :new
     end
@@ -37,5 +37,4 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit(:sentence, :missing_word)
   end
-
 end

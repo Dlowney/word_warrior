@@ -1,4 +1,6 @@
 class AttemptsController < ApplicationController
+  before_action :set_level, only: [:show, :new, :create]
+
   def show
     @attempt = Attempt.find(params[:id])
     @answers = @attempt.answers
@@ -11,14 +13,12 @@ class AttemptsController < ApplicationController
     compute_score
   end
 
-
   def new
     @attempt = Attempt.new
-    @questions = Question.all
-    @questionssample = @questions.sample(10)
+    @questions = @level.questions.sample(10)
     @propositions = []
-   @questionssample.each do |x|
-      @propositions << x.missing_word
+    @questions.each do |q|
+      @propositions << q.missing_word
     end
   end
 
@@ -27,14 +27,20 @@ class AttemptsController < ApplicationController
 
     @answers_hash = params[:choice]
     @answers_hash.each do |question_id, user_input|
+      @question = Question.find(question_id)
+      @correct = user_input == @question.missing_word
+
       @attempt.answers.create(
         question_id: question_id,
         user_input: user_input,
+        correct: @correct
       )
     end
 
-    redirect_to attempt_path(@attempt)
+    redirect_to level_attempt_path(@level, @attempt)
   end
+
+  private
 
   def compute_score
     number_questions = 10
@@ -45,5 +51,9 @@ class AttemptsController < ApplicationController
       end
     end
     @score = "#{number_correct} / #{number_questions}"
+  end
+
+  def set_level
+    @level = Level.find(params[:level_id])
   end
 end

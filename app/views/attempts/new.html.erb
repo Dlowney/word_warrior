@@ -3,9 +3,9 @@
 <div class='containerp'>
   <p>Choose the word from the dropdown menu that best completes the sentence.</p>
 
-  <%= form_tag('/attempts', method: :post) do %>
+  <%= form_tag("/levels/#{ @level.id }/attempts", method: :post) do %>
     <ul class='list_style'>
-      <% @questionssample.each do |q| %>
+      <% @questions.each do |q| %>
         <li>
           <% sentences = q.sentence.split('[]') %>
           <%= sentences[0] %>
