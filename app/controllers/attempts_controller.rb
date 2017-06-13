@@ -12,12 +12,12 @@ class AttemptsController < ApplicationController
   end
 
 
-
   def new
     @attempt = Attempt.new
-    @questions = Question.join(head_word_id: [level_id: [difficulty: 1]]).sample(5)
+    @questions = Question.all
+    @questionssample = @questions.sample(10)
     @propositions = []
-    @questions.each do |x|
+   @questionssample.each do |x|
       @propositions << x.missing_word
     end
   end
@@ -37,7 +37,7 @@ class AttemptsController < ApplicationController
   end
 
   def compute_score
-    number_questions = @questions.count
+    number_questions = 10
     number_correct = 0
     @answers.each do |x|
       if x.user_input == x.question.missing_word
