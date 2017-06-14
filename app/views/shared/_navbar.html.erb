@@ -8,8 +8,11 @@
   <div class="left">
 
     <%= link_to "Levels", levels_path, class: "link" %>
-<%= link_to user_path(current_user), class: "link" do %>
+   <% if user_signed_in? %>
+    <%= link_to user_path(current_user), class: "link" do %>
         Profile
+   <% end %>
+
       <% end %>
 
 
