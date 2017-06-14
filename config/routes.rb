@@ -10,4 +10,9 @@ Rails.application.routes.draw do
   end
 
   root to: 'pages#home'
+
+
+get '/pages/about', to: 'pages#about', as: 'about'
+
+
 end
