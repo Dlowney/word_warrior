@@ -30,7 +30,7 @@ LEVEL8 = %w(abandon accompany accumulate ambiguous append appreciate arbitrary a
 LEVEL9 = %w(accommodate analogy anticipate assure attain behalf bulk cease coherent coincide commence compatible concurrent confine controversy converse device devote diminish distort duration erode ethic format found inherent insight integral intermediate manual mature mediate medium military minimal mutual norm overlap passive portion preliminary protocol qualitative refine relax restrain revolution rigid route scenario sphere subordinate supplement suspend team temporary trigger unify violate vision)
 
 
-database = File.read("#{Rails.root}/db/data/questions.txt")
+database = File.read("#{Rails.root}/db/data/AmericanDB.txt")
 
 blocks = database.split("\n")
 
