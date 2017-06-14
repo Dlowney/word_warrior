@@ -10,4 +10,9 @@ Rails.application.routes.draw do
   resources :attempts, only: [:show, :new, :create]
 
   root to: 'pages#home'
+
+
+get '/pages/about', to: 'pages#about', as: 'about'
+
+
 end
