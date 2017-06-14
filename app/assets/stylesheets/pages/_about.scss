@@ -1,0 +1,38 @@
+.banner-about {
+    color: white;
+    text-align: center;
+    height: 100vh;
+    background-size: cover !important;
+    display: flex;
+
+}
+
+.up {
+  padding-top: 25px;
+}
+
+
+.cards-about {
+  display: flex;
+  padding-top: 25px;
+text-align: left;
+ }
+
+.card-about {
+margin: 25px;
+}
+
+.down {
+  padding-top: 25px;
+  text-align: left;
+  margin: 25px;
+}
+
+.color-rose {
+  color: #ce8485;
+  font-size: 26px;
+}
+
+.smaller {
+  font-size: 13px;
+}
