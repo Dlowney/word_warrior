@@ -5,9 +5,9 @@ Rails.application.routes.draw do
 
   resources :levels, only: [:index, :show] do
     resources :questions
-  end
 
-  resources :attempts, only: [:show, :new, :create]
+    resources :attempts, only: [:show, :new, :create]
+  end
 
   root to: 'pages#home'
 end
