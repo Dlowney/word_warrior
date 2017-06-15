@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="profile-panel">
+    <div class="panel panel-success">
+      <div class="panel-heading">TOTAL PERFORMANCE</div>
+      <div class="panel-body">
+        <div class="profile-heading">
+          <span>
+            Total
+          </span>
+
+          <span>
+            Completed Words <%= @total_completed_words.count %>
+          </span>
+
+          <span>
+            Total Accuracy <%= @total_accuracy %>%
+          </span>
+
+          <span>
+            <% total_percentage = (@total_completed_words.count.to_f / @head_words.count.to_f) * 100 %>
+
+            Percentage Completed <%= total_percentage.round(0) %>%
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="profile-container">
+  <div class="container">
+    <div class="row">
+      <% @levels.each do |level| %>
+        <% completed_level = @completed_head_words_group_by_level.map { |k, v| v if k == level.id }.flatten.compact %>
+        <% completed_percentage = (completed_level.count.to_f / level.head_words.count.to_f) %>
+
+        <div class="col-xs-12">
+          <div class="profile-row">
+            <span>
+              Difficulty <%= level.difficulty %> - <%= level.name %>
+            </span>
+
+            <span>
+              Completed Words <%= completed_level.count %>
+            </span>
+
+            <span>
+              <% if @correct_and_total_questions[level.id].present? %>
+                <% total_and_correct = @correct_and_total_questions[level.id] %>
+                <% accuracy = ((total_and_correct[1].to_f / total_and_correct[0].to_f) * 100).round(2) %>
+                Accuracy <%= accuracy %>%
+              <% else %>
+                N/A
+              <% end %>
+            </span>
+
+            <span>
+              <%= (completed_percentage * 100).round(0) %>%
+            </span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

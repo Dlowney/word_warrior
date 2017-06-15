@@ -2,10 +2,17 @@
   <div class="container">
     <div class="row">
       <% @levels.each do |level| %>
+        <% completed_level = @completed_head_words_group_by_level.map { |k, v| v if k == level.id }.flatten.compact %>
+        <% completed_percentage = (completed_level.count.to_f / level.head_words.count.to_f) * 100 %>
+
         <div class="col-xs-12">
           <div class="level-row">
-            <%= level.name %>
-            <%= level.difficulty %>
+            <span>
+              Difficulty <%= level.difficulty %> - <%= level.name %>
+            </span>
+            <span>
+              Completed <%= completed_percentage.round(2) %>%
+            </span>
             <%= link_to "", level_path(level), class: "level-row-link" %>
           </div>
         </div>

@@ -4,7 +4,7 @@
   <ul class='list_style'>
     <% @answers.each do |a| %>
       <li>
-        <% if a.user_input == a.question.missing_word %>
+        <% if a.correct %>
           <% sentences = a.question.sentence.split('[]') %>
           <%= sentences[0] %>
           <strong class="text-success">

@@ -3,29 +3,19 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="level-row">
-          <div class="row">
-            <div class="col-xs-3">
-              <div class="level-header-icon">
-                Level <%= @level.name %> <%= @level.difficulty %>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="level-header-words">
-                # of Words: <%= @head_words.size %>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="level-header-completed">
-                <%= @completed_head_words.size %> Completed
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="level-header-description">
-                <%= link_to "Continue Exercises",
-                      new_level_attempt_path(@level) %>
-              </div>
-            </div>
-          </div>
+          <span class="level-header-icon">
+            Level <%= @level.name %> <%= @level.difficulty %>
+          </span>
+          <span class="level-header-words">
+            No. of Words: <%= @head_words.size %>
+          </span>
+          <span class="level-header-completed">
+            Words Completed: <%= @completed_hw.size %>
+          </span>
+          <span class="level-header-description">
+            <%= link_to "Continue Exercises",
+                  new_level_attempt_path(@level) %>
+          </span>
         </div>
       </div>
     </div>
@@ -37,14 +27,14 @@
     <div class="row">
       <div class="col-xs-12 col-sm-6">
         <div class="level-vocabulary-row">
-          <% @incomplete_head_words.each do |hw| %>
+          <% @incomplete_hw.each do |hw| %>
             <p><%= hw.name %></p>
           <% end %>
         </div>
       </div>
       <div class="col-xs-12 col-sm-6">
         <div class="level-vocabulary-row">
-          <% @completed_head_words.each do |hw| %>
+          <% @completed_hw.each do |hw| %>
             <p><%= hw.name %></p>
           <% end %>
         </div>
