@@ -5,4 +5,8 @@ class ApplicationController < ActionController::Base
   def default_url_options
   { host: ENV["www.wordwarrior.eu"] || "localhost:3000" }
   end
+
+  def after_sign_in_path_for(resource)
+    levels_path
+  end
 end
