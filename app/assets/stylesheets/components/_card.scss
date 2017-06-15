@@ -43,3 +43,25 @@ img.resize {
   max-width:50%;
   max-height:50%;
 }
+
+
+.card-exo h1 {
+ color: #4180b5;
+}
+
+.card-exo p {
+ text-align: text-center;
+}
+
+.new-btn {
+  background-color: #4895d6;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.new-btn :hover{
+color: white;
+background-color: #4180b5;
+  }
+
