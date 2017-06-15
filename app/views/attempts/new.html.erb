@@ -1,24 +1,26 @@
-<h1> Vocabulary Review Exercise</h1>
+<div class="card-exo">
+ <h1> <%= " Level #{ @level.difficulty }" %> Exercise</h1>
 
-<div class='containerp'>
-  <p>Choose the word from the dropdown menu that best completes the sentence.</p>
+  <div class='containerp'>
 
-  <%= form_tag("/levels/#{ @level.id }/attempts", method: :post) do %>
-    <ul class='list_style'>
-      <% @questions.each do |q| %>
-        <li>
-          <% sentences = q.sentence.split('[]') %>
-          <%= sentences[0] %>
-          <%= select("choice", q.id, @propositions.shuffle.map {|p| [ p, p ] }, { include_blank: true }) %>
-          <%= sentences[1] %>
-        </li>
-      <% end %>
-    </ul>
+    <p>Choose the word from the dropdown menu that best completes the sentence.</p>
 
-    <div class = "text-center pad">
-      <!-- <a href="#" class="ribbon-btn">SOLUTIONS </a> -->
-      <%= submit_tag value="Check Answers"%>
-    </div>
-  <% end %>
+    <%= form_tag("/levels/#{ @level.id }/attempts", method: :post) do %>
+      <ul class='list_style'>
+        <% @questions.each do |q| %>
+          <li>
+            <% sentences = q.sentence.split('[]') %>
+            <%= sentences[0] %>
+            <%= select("choice", q.id, @propositions.shuffle.map {|p| [ p, p ] }, { include_blank: true }) %>
+            <%= sentences[1] %>
+          </li>
+        <% end %>
+      </ul>
+
+      <div class = "text-center ">
+        <!-- <a href="#" class="ribbon-btn">SOLUTIONS </a> -->
+        <%= submit_tag value="Check Answers", class: "new-btn" %>
+      </div>
+    <% end %>
+  </div>
 </div>
-
