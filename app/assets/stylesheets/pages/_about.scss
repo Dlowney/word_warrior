@@ -1,31 +1,17 @@
 .banner-about {
     color: white;
     text-align: center;
-    height: 100vh;
+    height: 93vh;
     background-size: cover !important;
     display: flex;
 
+    h1 {
+      margin-top: 50px;
+    }
 }
 
 .up {
   padding-top: 25px;
-}
-
-
-.cards-about {
-  display: flex;
-  padding-top: 25px;
-text-align: left;
- }
-
-.card-about {
-margin: 25px;
-}
-
-.down {
-  padding-top: 25px;
-  text-align: left;
-  margin: 25px;
 }
 
 .color-rose {

@@ -3,19 +3,14 @@ class AttemptsController < ApplicationController
 
   def show
     @attempt = Attempt.find(params[:id])
-    @answers = @attempt.answers
-    @questions = @attempt.questions
+    @answers = @attempt.answers.order(:question_id)
 
-    @user_input = []
-    @answers.each do |y|
-      @user_input << y.user_input
-    end
     compute_score
   end
 
   def new
     @attempt = Attempt.new
-    @questions = @level.questions.sample(10)
+    @questions = @level.questions.order("RANDOM()").first(10).sort_by(&:id)
     @propositions = []
     @questions.each do |q|
       @propositions << q.missing_word
@@ -43,8 +38,9 @@ class AttemptsController < ApplicationController
   private
 
   def compute_score
-    number_questions = 10
+    number_questions = @answers.size
     number_correct = 0
+
     @answers.each do |x|
       if x.user_input == x.question.missing_word
         number_correct += 1

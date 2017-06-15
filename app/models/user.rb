@@ -11,8 +11,11 @@ class User < ApplicationRecord
     answers.where(correct: true)
   end
 
-  def correct_answers_for_head_word(head_word_id)
-    correct_answers.joins(:question)
-                   .where(questions: { head_word_id: head_word_id })
+  def attempted_questions
+    answers.count
+  end
+
+  def total_accuracy
+    ((correct_answers.count.to_f / answers.count.to_f) * 100).round(2)
   end
 end

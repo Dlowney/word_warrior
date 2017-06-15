@@ -1,24 +1,28 @@
-.level-row {
-  display: flex;
-  justify-content: space-between;
+.profile-panel {
+  padding-top: 20px;
+}
+
+.profile-row {
   color: white;
+  display: flex;
   margin: 10px 0;
   border-radius: 5px;
   padding: 20px 10px;
   position: relative;
   background-color: #4c93ce;
+  justify-content: space-between;
 
   &:hover {
     background-color: #ce8485;
   }
 }
 
-.level-container {
+.profile-container {
   padding-top: 20px;
   padding-bottom: 30px;
 }
 
-.level-row-link {
+.profile-row-link {
   position: absolute;
   top: 0;
   left: 0;
@@ -26,16 +30,21 @@
   bottom: 0;
 }
 
-.level-vocabulary-container {
+.profile-vocabulary-container {
   padding-top: 20px;
   padding-bottom: 30px;
 }
 
-.level-vocabulary-row {
+.profile-vocabulary-row {
   color: white;
   margin: 10px 0;
   border-radius: 5px;
   padding: 20px 10px;
   position: relative;
   background-color: #CBC0AD;
+}
+
+.profile-heading {
+  display: flex;
+  justify-content: space-between;
 }

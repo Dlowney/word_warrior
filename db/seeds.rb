@@ -95,18 +95,23 @@ user = User.create(
         password: "password",
         password_confirmation: "password"
       )
-level = Level.find_by(difficulty: 1)
 
-50.times do |i|
+1500.times do |i|
+  difficulty = rand(1..10)
+  level = Level.find_by(difficulty: difficulty)
   attempt = Attempt.create(user: user)
 
-  10.times do |ii|
+  count_answers = level.difficulty == 10 ? 1000 : 10
+  count_answers.times do |ii|
     question = level.questions.order("RANDOM()").first
     user_input = [question.missing_word, ""].sample
+    correct = [true, false].sample
+
     Answer.create(
       attempt: attempt,
       question: question,
-      user_input: user_input
+      user_input: user_input,
+      correct: correct
     )
   end
 end

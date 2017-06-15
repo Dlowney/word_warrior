@@ -12,8 +12,8 @@
   <body>
     <%= render 'shared/navbar' unless current_page?(root_url) %>
     <%= render 'shared/flashes' %>
-    <%= yield %>
     <%= render 'shared/navbar' if current_page?(root_url) %>
+    <%= yield %>
     <%= javascript_include_tag 'application' %>
   </body>
 </html>
