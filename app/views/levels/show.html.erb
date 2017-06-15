@@ -1,7 +1,7 @@
 <div class="level-container">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-xs-10">
         <div class="level-row">
           <span class="level-header-icon">
             Level <%= @level.name %> <%= @level.difficulty %>
@@ -12,11 +12,13 @@
           <span class="level-header-completed">
             Words Completed: <%= @completed_hw.size %>
           </span>
-          <span class="level-header-description">
+        </div>
+      </div>
+      <div class="col-xs-2">
+        <button class="btn-level">
             <%= link_to "Continue Exercises",
                   new_level_attempt_path(@level) %>
-          </span>
-        </div>
+          </button>
       </div>
     </div>
   </div>
