@@ -7,3 +7,22 @@
   border:0;
   margin-top: 100px;
 }
+
+.btn-level {
+  color: white;
+  background-color: $brand-color;
+  height: 62px;
+  border-radius: 5px;
+  border:0;
+  margin: 10px 0px;
+  padding:0 10px;
+
+  :hover {
+    color:white;
+
+  }
+
+  :visited {
+    color:white;
+  }
+}
