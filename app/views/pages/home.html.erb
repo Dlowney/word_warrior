@@ -9,7 +9,11 @@
       <i class="fa fa-comments-o fa-5x" aria-hidden="true"></i>
     </div>
     <button class="btn-cta">
+      <% if user_signed_in? %>
+      <%= link_to "GO TO YOUR EXERCISES", levels_path %>
+      <% else %>
       <%= link_to "CREATE YOUR ACCOUNT NOW", new_registration_path(User.new) %>
+      <% end %>
     </button>
     <div class="pushtobottom"></div>
 
