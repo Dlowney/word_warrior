@@ -10,7 +10,7 @@
     </div>
     <button class="btn-cta">
       <% if user_signed_in? %>
-      <%= link_to "GO TO EXERCISES", levels_path %>
+      <%= link_to "GO TO YOUR EXERCISES", levels_path %>
       <% else %>
       <%= link_to "CREATE YOUR ACCOUNT NOW", new_registration_path(User.new) %>
       <% end %>
